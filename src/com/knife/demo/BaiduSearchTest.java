@@ -11,12 +11,14 @@ import com.jase.knife.BrowserEmulator;
 
 public class BaiduSearchTest {
 	BrowserEmulator be;
-	String baseUrl = "https://www.baidu.com";
+	String baseUrl;
+	
 	String searchBox = "//*[@id='kw']";
 	String searchBtn = "//*[@id='su']";
 
 	@BeforeClass
 	public void setUp() throws Exception {
+		baseUrl = "https://www.baidu.com";
 		be = new BrowserEmulator();
 	}
 

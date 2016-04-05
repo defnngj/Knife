@@ -86,7 +86,6 @@ public class BrowserEmulator {
 	/**
 	 * Open the URL
 	 * @param url
-	 *            the target URL
 	 */
 	public void open(String url) {
 		//pause(stepInterval);
@@ -108,9 +107,8 @@ public class BrowserEmulator {
 	}
 	
 	/**
-	 * Open the URL
-	 * @param url
-	 *            the target URL
+	 * Setting browser window is maximized
+	 * 
 	 */
 	public void maxWindow() {
 		
@@ -151,10 +149,8 @@ public class BrowserEmulator {
 	/**
 	 * Type text at the page element<br>
 	 * Before typing, try to clear existed text
-	 * @param xpath
-	 *            the element's xpath
-	 * @param text
-	 *            the input text
+	 * @param xpath, the element's xpath
+	 * @param text,   the input text
 	 */
 	public void type(String xpath, String text) {
 
@@ -203,10 +199,8 @@ public class BrowserEmulator {
 	
 	/**
 	 * Drags an element a certain distance and then drops it.
-	 * @param el_xpath
-	 * the element's xpath
-	 * @param ta_xpath
-	 * the element's xpath
+	 * @param el_xpath, the element's xpath
+	 * @param ta_xpath, the element's xpath
 	 */
 	public void dragAndDrop(String el_xpath,String ta_xpath) {
 		waitElement(el_xpath,timeout);
@@ -221,8 +215,7 @@ public class BrowserEmulator {
 	
 	/**
 	 * Click the element by the link text.
-	 * @param text
-	 * the element's link text
+	 * @param text, the element's link text
 	 */
 	public void clickText(String text) {
 		
@@ -252,8 +245,7 @@ public class BrowserEmulator {
 
 	/**
 	 * Enter the iframe
-	 * @param xpath
-	 *            the iframe's xpath
+	 * @param xpath,  the iframe's xpath
 	 */
 	public void enterFrame(String xpath) {
 		waitElement(xpath,timeout);
@@ -269,8 +261,7 @@ public class BrowserEmulator {
 	
 	/**
 	 * Open the new window and switch the handle to the newly opened window.
-	 * @param xpath
-	 *  the iframe's xpath
+	 * @param xpath,  the open windows element xpath
 	 */
 	public void openOneWindow(String xpath) {
 		
