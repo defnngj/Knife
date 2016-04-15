@@ -13,8 +13,8 @@ public class BaiduSearchTest {
 	BrowserEmulator be;
 	String baseUrl;
 	
-	String searchBox = "//*[@id='kw']";
-	String searchBtn = "//*[@id='su']";
+	String searchBox = "xpath=>//*[@id='kw']";
+	String searchBtn = "xpath=>//*[@id='su']";
 
 	@BeforeClass
 	public void setUp() throws Exception {

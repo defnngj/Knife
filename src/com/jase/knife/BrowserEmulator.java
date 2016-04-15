@@ -33,7 +33,6 @@ import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import org.testng.Assert;
 
 
@@ -70,6 +69,41 @@ public class BrowserEmulator {
 		
 	}
 	
+	/* Analyzing targeting elements, and positioning elements
+	 * @param xpath
+	 *  the element's 
+	 */
+	public WebElement getElement(String xpath){
+
+		String by = xpath.split("=>")[0];
+		String value = xpath.split("=>")[1];
+
+		if(by.equals("id")){
+			WebElement element = browser.findElement(By.id(value));
+			return element;
+		}else if(by.equals("name")){
+			WebElement element = browser.findElement(By.name(value));
+			return element;
+		}else if(by.equals("class")){
+			WebElement element = browser.findElement(By.className(value));
+			return element;
+		}else if(by.equals("linkText")){
+			WebElement element = browser.findElement(By.linkText(value));
+			return element;
+		}else if(by.equals("xpath")){
+			WebElement element = browser.findElement(By.xpath(value));
+			return element;
+		}else if(by.equals("css")){
+			WebElement element = browser.findElement(By.cssSelector(value));
+			return element;
+		}else{
+			Assert.fail("Please enter the correct targeting elements,'id','name','class','xpaht','css'.");
+		}
+		return null;
+		
+				
+	}
+	
 	/**
 	 * Wait for an element within a certain amount of time
 	 * @param xpath
@@ -78,8 +112,28 @@ public class BrowserEmulator {
 	 */
 	public void waitElement(String xpath,int second) {
 		
+		String by = xpath.split("=>")[0];
+		String value = xpath.split("=>")[1];
+		By findelement = null;
+		
+		if(by.equals("id")){
+			 findelement = By.id(value);
+		}else if(by == "name"){
+			findelement = By.name(value);
+		}else if(by == "class"){
+			findelement = By.className(value);
+		}else if(by == "linkText"){
+			findelement = By.linkText(value);
+		}else if(by.equals("xpath")){
+			findelement = By.xpath(value);
+		}else if(by == "css"){
+			findelement = By.cssSelector(value);
+		}else{
+			Assert.fail("Please enter the correct targeting elements,'id','name','class','xpaht','css'.");
+			
+		}
 		new WebDriverWait(browser, second).until(
-			ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
+			ExpectedConditions.presenceOfElementLocated(findelement));
 			
 	}
 
@@ -138,13 +192,14 @@ public class BrowserEmulator {
 	public void click(String xpath) {
 		
 		waitElement(xpath,timeout);
-		WebElement we = browser.findElement(By.xpath(xpath));
+		WebElement we = getElement(xpath);
 		try {
 			we.click();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
 
 	/**
 	 * Type text at the page element<br>
@@ -155,7 +210,8 @@ public class BrowserEmulator {
 	public void type(String xpath, String text) {
 
 		waitElement(xpath,timeout);
-		WebElement we = browser.findElement(By.xpath(xpath));
+		WebElement we = getElement(xpath);
+		we.sendKeys(text);
 		try {
 			we.clear();
 		} catch (Exception e) {
@@ -178,7 +234,7 @@ public class BrowserEmulator {
 		waitElement(xpath,timeout);
 		
 		Actions action = new Actions(browser);
-		WebElement we = browser.findElement(By.xpath(xpath));
+		WebElement we = getElement(xpath);
 		
 		action.contextClick(we).perform();
 	}
@@ -192,7 +248,7 @@ public class BrowserEmulator {
 		waitElement(xpath,timeout);
 		
 		Actions action = new Actions(browser);
-		WebElement we = browser.findElement(By.xpath(xpath));
+		WebElement we = getElement(xpath);
 		
 		action.clickAndHold(we).perform();
 	}
@@ -207,8 +263,8 @@ public class BrowserEmulator {
 		waitElement(ta_xpath,timeout);
 		
 		Actions action = new Actions(browser);
-		WebElement el = browser.findElement(By.xpath(el_xpath));
-		WebElement ta = browser.findElement(By.xpath(ta_xpath));
+		WebElement el = getElement(el_xpath);
+		WebElement ta = getElement(ta_xpath);
 		
 		action.dragAndDrop(el,ta).perform();
 	}
@@ -249,7 +305,8 @@ public class BrowserEmulator {
 	 */
 	public void enterFrame(String xpath) {
 		waitElement(xpath,timeout);
-		browser.switchTo().frame(browser.findElement(By.xpath(xpath)));
+		WebElement we = getElement(xpath);
+		browser.switchTo().frame(we);
 	}
 
 	/**
@@ -268,7 +325,7 @@ public class BrowserEmulator {
 		waitElement(xpath,timeout);
 		
 		String sreach_handle = browser.getWindowHandle();
-		WebElement we = browser.findElement(By.xpath(xpath));
+		WebElement we = getElement(xpath);
 		try {
 			we.click();
 		} catch (Exception e) {
@@ -290,7 +347,7 @@ public class BrowserEmulator {
 	 * @return
 	 */
 	public String getText(String xpath) {
-		WebElement element = browser.findElement(By.xpath(xpath)); 
+		WebElement element = getElement(xpath);
 		return element.getText();
 	}
 	
@@ -315,7 +372,7 @@ public class BrowserEmulator {
 	 * @return
 	 */
 	public String getAttribute(String xpath,String attribute) {
-		WebElement el = browser.findElement(By.xpath(xpath));
+		WebElement el = getElement(xpath);
 		String value = el.getAttribute(attribute);
 		return value;
 	}

@@ -24,17 +24,18 @@ import com.jase.knife.BrowserEmulator;
  */
 public class BaiduSearch {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 
 		String baseUrl = "https://www.baidu.com";
-		String searchBox = "//*[@id='kw']";
-		String searchBtn = "//*[@id='su']";
+		String searchBox = "id=>kw";
+		String searchBtn = "xpath=>//*[@id='su']";
 
 		BrowserEmulator be = new BrowserEmulator();
 
 		be.open(baseUrl);
 		be.type(searchBox, "github");
 		be.click(searchBtn);
+		Thread.sleep(2000);
 		System.out.println(be.getTitle());
 		be.quit();
 		
