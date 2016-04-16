@@ -21,7 +21,7 @@ import java.util.Properties;
 
 /**
  * Global Settings
- * @author ChenKan
+ * @author bugmaster
  */
 public class GlobalSettings {
 

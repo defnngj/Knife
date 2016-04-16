@@ -32,6 +32,7 @@ import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
@@ -39,7 +40,7 @@ import org.testng.Assert;
 
 /**
  * BrowserEmulator is based on Selenium2 and adds some enhancements
- * @author Bugmaster
+ * @author bugmaster
  */
 public class BrowserEmulator {
 
@@ -69,7 +70,8 @@ public class BrowserEmulator {
 		
 	}
 	
-	/* Analyzing targeting elements, and positioning elements
+	/**
+	 * Analyzing targeting elements, and positioning elements
 	 * @param xpath
 	 *  the element's 
 	 */
@@ -192,9 +194,9 @@ public class BrowserEmulator {
 	public void click(String xpath) {
 		
 		waitElement(xpath,timeout);
-		WebElement we = getElement(xpath);
+		WebElement element = getElement(xpath);
 		try {
-			we.click();
+			element.click();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -210,15 +212,15 @@ public class BrowserEmulator {
 	public void type(String xpath, String text) {
 
 		waitElement(xpath,timeout);
-		WebElement we = getElement(xpath);
-		we.sendKeys(text);
+		WebElement element = getElement(xpath);
+
 		try {
-			we.clear();
+			element.clear();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		try {
-			we.sendKeys(text);
+			element.sendKeys(text);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -234,9 +236,9 @@ public class BrowserEmulator {
 		waitElement(xpath,timeout);
 		
 		Actions action = new Actions(browser);
-		WebElement we = getElement(xpath);
+		WebElement element = getElement(xpath);
 		
-		action.contextClick(we).perform();
+		action.contextClick(element).perform();
 	}
 
 	/**
@@ -248,9 +250,9 @@ public class BrowserEmulator {
 		waitElement(xpath,timeout);
 		
 		Actions action = new Actions(browser);
-		WebElement we = getElement(xpath);
+		WebElement element = getElement(xpath);
 		
-		action.clickAndHold(we).perform();
+		action.clickAndHold(element).perform();
 	}
 	
 	/**
@@ -275,12 +277,26 @@ public class BrowserEmulator {
 	 */
 	public void clickText(String text) {
 		
-		WebElement we = browser.findElement(By.partialLinkText(text));
+		WebElement element = browser.findElement(By.partialLinkText(text));
 		try {
-			we.click();
+			element.click();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * Select the select tag value
+	 * @param xpath
+	 * @param value
+	 */
+	public void selectValue(String xpath,String value){
+		
+		waitElement(xpath,timeout);
+		
+		WebElement element = getElement(xpath);
+		Select sel = new Select(element);
+		sel.selectByValue(value);
 	}
 	
 	/**
@@ -305,8 +321,8 @@ public class BrowserEmulator {
 	 */
 	public void enterFrame(String xpath) {
 		waitElement(xpath,timeout);
-		WebElement we = getElement(xpath);
-		browser.switchTo().frame(we);
+		WebElement element = getElement(xpath);
+		browser.switchTo().frame(element);
 	}
 
 	/**
@@ -325,9 +341,9 @@ public class BrowserEmulator {
 		waitElement(xpath,timeout);
 		
 		String sreach_handle = browser.getWindowHandle();
-		WebElement we = getElement(xpath);
+		WebElement element = getElement(xpath);
 		try {
-			we.click();
+			element.click();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -372,8 +388,8 @@ public class BrowserEmulator {
 	 * @return
 	 */
 	public String getAttribute(String xpath,String attribute) {
-		WebElement el = getElement(xpath);
-		String value = el.getAttribute(attribute);
+		WebElement element = getElement(xpath);
+		String value = element.getAttribute(attribute);
 		return value;
 	}
 	

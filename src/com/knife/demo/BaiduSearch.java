@@ -20,7 +20,7 @@ import com.jase.knife.BrowserEmulator;
 
 /**
  * The demo to show Knife basic usage
- * @author ChenKan
+ * @author bugmaster
  */
 public class BaiduSearch {
 
@@ -30,14 +30,14 @@ public class BaiduSearch {
 		String searchBox = "id=>kw";
 		String searchBtn = "xpath=>//*[@id='su']";
 
-		BrowserEmulator be = new BrowserEmulator();
+		BrowserEmulator driver = new BrowserEmulator();
 
-		be.open(baseUrl);
-		be.type(searchBox, "github");
-		be.click(searchBtn);
+		driver.open(baseUrl);
+		driver.type(searchBox, "github");
+		driver.click(searchBtn);
 		Thread.sleep(2000);
-		System.out.println(be.getTitle());
-		be.quit();
+		System.out.println(driver.getTitle());
+		driver.quit();
 		
 	}
 }
