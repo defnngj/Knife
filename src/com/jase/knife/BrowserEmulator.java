@@ -76,6 +76,10 @@ public class BrowserEmulator {
 	 *  the element's 
 	 */
 	public WebElement getElement(String xpath){
+		
+		if(xpath.contains("=>") == false){
+			Assert.fail("Positioning syntax errors, lack of '=>'.");
+		}
 
 		String by = xpath.split("=>")[0];
 		String value = xpath.split("=>")[1];
@@ -113,6 +117,10 @@ public class BrowserEmulator {
 	 * the second
 	 */
 	public void waitElement(String xpath,int second) {
+		
+		if(xpath.contains("=>") == false){
+			Assert.fail("Positioning syntax errors, lack of '=>'.");
+		}
 		
 		String by = xpath.split("=>")[0];
 		String value = xpath.split("=>")[1];
