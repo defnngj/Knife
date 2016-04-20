@@ -2,20 +2,20 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="8043" started-at="2016-04-16T03:33:29Z" finished-at="2016-04-16T03:33:37Z">
+  <suite name="Default suite" duration-ms="8537" started-at="2016-04-20T10:07:59Z" finished-at="2016-04-20T10:08:08Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="8043" started-at="2016-04-16T03:33:29Z" finished-at="2016-04-16T03:33:37Z">
+    <test name="Default test" duration-ms="8537" started-at="2016-04-20T10:07:59Z" finished-at="2016-04-20T10:08:08Z">
       <class name="com.knife.demo.BaiduSearchTest">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:com.knife.demo.BaiduSearchTest@47d44d0d]" name="setUp" is-config="true" duration-ms="1531" started-at="2016-04-16T11:33:29Z" finished-at="2016-04-16T11:33:31Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.knife.demo.BaiduSearchTest@d2e7d9]" name="setUp" is-config="true" duration-ms="1548" started-at="2016-04-20T18:07:59Z" finished-at="2016-04-20T18:08:01Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="testCase()[pri:0, instance:com.knife.demo.BaiduSearchTest@47d44d0d]" name="testCase" duration-ms="5244" started-at="2016-04-16T11:33:31Z" finished-at="2016-04-16T11:33:36Z">
+        <test-method status="PASS" signature="testCase()[pri:0, instance:com.knife.demo.BaiduSearchTest@d2e7d9]" name="testCase" duration-ms="5884" started-at="2016-04-20T18:08:01Z" finished-at="2016-04-20T18:08:07Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCase -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.knife.demo.BaiduSearchTest@47d44d0d]" name="tearDown" is-config="true" duration-ms="1255" started-at="2016-04-16T11:33:36Z" finished-at="2016-04-16T11:33:37Z">
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.knife.demo.BaiduSearchTest@d2e7d9]" name="tearDown" is-config="true" duration-ms="1097" started-at="2016-04-20T18:08:07Z" finished-at="2016-04-20T18:08:08Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
