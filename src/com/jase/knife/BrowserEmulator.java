@@ -414,4 +414,6 @@ public class BrowserEmulator {
 	public void dismissAlert() {
 		browser.switchTo().alert().dismiss();
 	}
+	
+
 }

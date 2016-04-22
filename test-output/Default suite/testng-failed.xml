@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <listeners>
-    <listener class-name="com.netease.qa.testng.TestResultListener"/>
-    <listener class-name="com.netease.qa.testng.RetryListener"/>
-    <listener class-name="com.netease.qa.testng.PowerEmailableReporter"/>
-  </listeners>
   <test name="Default test(failed)">
     <classes>
-      <class name="com.knife.demo.BaiduSearchTest">
+      <class name="login.knife.demo.LoginTest">
         <methods>
-          <include name="testCase"/>
           <include name="tearDown"/>
+          <include name="testCase" invocation-numbers="0 1 2 3"/>
           <include name="setUp"/>
         </methods>
-      </class> <!-- com.knife.demo.BaiduSearchTest -->
+      </class> <!-- login.knife.demo.LoginTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
