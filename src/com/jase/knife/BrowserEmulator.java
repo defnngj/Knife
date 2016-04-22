@@ -128,15 +128,15 @@ public class BrowserEmulator {
 		
 		if(by.equals("id")){
 			 findelement = By.id(value);
-		}else if(by == "name"){
+		}else if(by.equals("name")){
 			findelement = By.name(value);
-		}else if(by == "class"){
+		}else if(by.equals("class")){
 			findelement = By.className(value);
-		}else if(by == "linkText"){
+		}else if(by.equals("linkText")){
 			findelement = By.linkText(value);
 		}else if(by.equals("xpath")){
 			findelement = By.xpath(value);
-		}else if(by == "css"){
+		}else if(by.equals("css")){
 			findelement = By.cssSelector(value);
 		}else{
 			Assert.fail("Please enter the correct targeting elements,'id','name','class','xpaht','css'.");

@@ -7,18 +7,21 @@ import com.jase.knife.BrowserEmulator;
 public class LoginUser {
 	
 	BrowserEmulator driver;
-	static String login_userName = "id=>idInput";
-	static String login_passWord = "id=>pwdInput";
-	static String login_Button = "id=>loginBtn";
+	static String login_frame = "xpath=>//div[@id='loginDiv']/iframe";
+	static String login_userName = "name=>email";
+	static String login_passWord = "name=>password";
+	static String login_Button = "id=>dologin";
 	static String login_success_user = "id=>spnUid";
 	static String logout_Button = "linkText=>退出";
 	static String login_Error_Hint = "xpath=>//div[@class='error-tt']/p";
 	
 	//登录方法
 	public static void login(BrowserEmulator driver,String username,String password){
+		driver.enterFrame(login_frame);
 		driver.type(login_userName,username);
 		driver.type(login_passWord,password);
 		driver.click(login_Button);
+		driver.leaveFrame();
 	}
 	
 	//获取登录错误提示
