@@ -13,7 +13,7 @@ public class LoginUser {
 	static String login_Button = "id=>dologin";
 	static String login_success_user = "id=>spnUid";
 	static String logout_Button = "linkText=>退出";
-	static String login_Error_Hint = "xpath=>//div[@class='error-tt']/p";
+	static String login_Error_Hint = "xpath=>//div[@class='ferrorhead']";
 	
 	//登录方法
 	public static void login(BrowserEmulator driver,String username,String password){
@@ -26,8 +26,10 @@ public class LoginUser {
 	
 	//获取登录错误提示
 	public static String login_error_info(BrowserEmulator driver){
-	String text = driver.getText(login_Error_Hint);
-	return text;
+		driver.enterFrame(login_frame);
+		String text = driver.getText(login_Error_Hint);
+		driver.leaveFrame();
+		return text;
 	}
 	
 	//获取登录成功之后的用户

@@ -3,13 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="login.knife.demo.LoginTest">
+      <class name="login.knife.demo.LoginAndOutTest">
         <methods>
           <include name="tearDown"/>
-          <include name="testCase" invocation-numbers="0 1 2 3"/>
+          <include name="testCase"/>
           <include name="setUp"/>
         </methods>
-      </class> <!-- login.knife.demo.LoginTest -->
+      </class> <!-- login.knife.demo.LoginAndOutTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

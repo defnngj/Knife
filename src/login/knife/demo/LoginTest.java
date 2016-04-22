@@ -24,9 +24,10 @@ public class LoginTest {
 	// 定义对象数组
 	@DataProvider(name = "user")
 	public Object[][] Users() {
-		return new Object[][] { { "", "", "请先输入您的邮箱帐号" },
-				{ "testing", " ", "帐号或密码错误" }, { " ", "123456", "请先输入您的邮箱帐号" },
-				{ "error", "error", "帐号或密码错误" }, };
+		return new Object[][] { { "", "", "请输入帐号" },
+								{ "test", "", "请输入密码" }, 
+								{ " ", "123456", "帐号格式错误" },
+								{ "error0", "error0", "帐号或密码错误" }, };
 	}
 
 	@Test(dataProvider = "user")
@@ -39,8 +40,8 @@ public class LoginTest {
 		
 		String text = LoginUser.login_error_info(driver);
 		
-		System.out.println(text);
-		System.out.println(expectText);
+		//System.out.println(text);
+		//System.out.println(expectText);
 		Assert.assertEquals(text, expectText);
 
 	}

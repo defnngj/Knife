@@ -5,8 +5,8 @@
 		<classes>
 			<class name="com.knife.demo.BaiduSearchTest" />
 		</classes>
-	</test> <!-- Default test -->
-	<listeners>
+	</test> 
+	<listeners> <!-- 使用arrow，如果用例断言失败将会重试 -->
 		<listener class-name="com.netease.qa.testng.TestResultListener" />
 		<listener class-name="com.netease.qa.testng.RetryListener" />
 		<listener class-name="com.netease.qa.testng.PowerEmailableReporter" />
