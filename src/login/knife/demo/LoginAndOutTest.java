@@ -23,8 +23,8 @@ public class LoginAndOutTest {
 		driver.open(baseUrl);
 
 		// µ÷ÓÃµÇÂ¼Ä£¿é
-		String username = "fnngj";
-		String password = "fnngj@126";
+		String username = "uasename";
+		String password = "password";
 		LoginUser.login(driver, username, password);
 		Thread.sleep(5000);
 		
