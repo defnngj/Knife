@@ -1,10 +1,9 @@
 package login.knife.demo;
 
-
 import com.jase.knife.BrowserEmulator;
 
 
-public class LoginUser {
+public class LoginPage {
 	
 	BrowserEmulator driver;
 	static String login_frame = "xpath=>//div[@id='loginDiv']/iframe";
