@@ -25,15 +25,15 @@ public class LoginAndOutTest {
 		// 调用登录模块
 		String username = "uasename";
 		String password = "password";
-		LoginUser.login(driver, username, password);
+		LoginPage.login(driver, username, password);
 		Thread.sleep(5000);
 		
 		//验证
-		String text = LoginUser.login_user_info(driver);
+		String text = LoginPage.login_user_info(driver);
 		Assert.assertEquals(text,username+"@126.com");
 		
 		//调用退出模块
-		LoginUser.logout(driver);
+		LoginPage.logout(driver);
 		
 
 	}
