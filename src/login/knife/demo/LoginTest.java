@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import login.knife.demo.LoginUser;
+import login.knife.demo.LoginPage;
 
 import com.jase.knife.BrowserEmulator;
 
@@ -35,10 +35,10 @@ public class LoginTest {
 		driver.open(baseUrl);
 
 		// µ÷ÓÃµÇÂ¼Ä£¿é
-		LoginUser.login(driver, username, password);
+		LoginPage.login(driver, username, password);
 		Thread.sleep(2000);
 		
-		String text = LoginUser.login_error_info(driver);
+		String text = LoginPage.login_error_info(driver);
 		
 		//System.out.println(text);
 		//System.out.println(expectText);
