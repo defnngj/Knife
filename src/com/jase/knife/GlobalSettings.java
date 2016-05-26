@@ -27,7 +27,9 @@ public class GlobalSettings {
 
 	public static Properties prop = getProperties();
 	
-	public static int browserCoreType = Integer.parseInt(prop.getProperty("BrowserCoreType", "2"));
+	public static int Mode = Integer.parseInt(prop.getProperty("Mode", "2"));
+	public static int browserType = Integer.parseInt(prop.getProperty("BrowserType", "2"));
+	public static String Host = prop.getProperty("Host", "http://127.0.0.1:4444/wd/hub");
 	public static String timeout = prop.getProperty("Timeout", "5");
 	
 	public static String getProperty(String property) {
