@@ -16,6 +16,9 @@
  */
 package com.knife.demo;
 
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+
 import com.jase.knife.BrowserEmulator;
 
 /**
@@ -24,12 +27,12 @@ import com.jase.knife.BrowserEmulator;
  */
 public class BaiduSearch {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, UnsupportedEncodingException, MalformedURLException {
 
 		String baseUrl = "https://www.baidu.com";
 		String searchBox = "id=>kw";
 		String searchBtn = "xpath=>//*[@id='su']";
-
+		
 		BrowserEmulator driver = new BrowserEmulator();
 
 		driver.open(baseUrl);
@@ -38,6 +41,5 @@ public class BaiduSearch {
 		Thread.sleep(2000);
 		System.out.println(driver.getTitle());
 		driver.quit();
-		
 	}
 }
