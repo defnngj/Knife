@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Default suite">
+    <test verbose="2" name="Default test">
+        <classes>
+            <class name="demo.BaiduDemo" />
+        </classes>
+    </test>
+    <listeners> <!-- 使用arrow，如果用例断言失败将会重试 -->
+        <listener class-name="com.netease.qa.testng.TestResultListener" />
+        <listener class-name="com.netease.qa.testng.RetryListener" />
+        <listener class-name="com.netease.qa.testng.PowerEmailableReporter" />
+    </listeners>
+</suite> <!-- Default suite -->
