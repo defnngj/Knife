@@ -16,12 +16,10 @@
  */
 package knife;
 import java.util.Set;
+import java.io.File;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -432,6 +430,18 @@ public class BrowserEmulator {
      */
     public void dismissAlert() {
         browser.switchTo().alert().dismiss();
+    }
+
+    /**
+     * TakesScreenshot.
+     */
+    public void TakesScreenshot(String file_path) {
+        try {
+            File srcFile = ((TakesScreenshot)browser).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(srcFile,new File(file_path));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
