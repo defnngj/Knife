@@ -19,15 +19,16 @@ WebUI automation testing framework based on Selenium
 
 依赖框架与库：
 * Selenium3 :http://www.seleniumhq.org/ (通过Maven更新)
-* log4j :http://logging.apache.org/log4j/1.2/(通过Maven更新)
-* testNG  :http://testng.org/doc/index.html(通过Maven更新)
-* arrow  :https://github.com/NetEase/arrow/releases(需要单独下载，并导入IDE)
+* log4j :http://logging.apache.org/log4j/1.2/ (通过Maven更新)
+* testNG  :http://testng.org/doc/index.html (通过Maven更新)
+* arrow  :https://github.com/NetEase/arrow/releases (需要单独下载，并导入IDE)
 
 
 例子：
    请查看com.knife.demo以及login.knife.demo目录
 
 =====================================================
+    
     import org.testng.annotations.BeforeClass;
     import org.testng.annotations.AfterClass;
     import org.testng.annotations.DataProvider;
