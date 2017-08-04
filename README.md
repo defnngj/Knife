@@ -4,7 +4,7 @@ WebUI automation testing framework based on Selenium
 本框架参考了Degger: https://github.com/NetEase/Dagger
 
 介绍：
-  Knife基于Selenium（WebDriver）进行了简单的二次封装，比Selenium所提供的原生方法操作更简单。Knife参考了Dagger，功能相对来说要简单很多。
+  Knife基于Selenium（WebDriver）进行了简单的二次封装，比Selenium所提供的原生方法操作更简单。Knife参考了Dagger，功能做了简化。
   
 特点：
 * 简单封装有selenium原生的方法，使用更加简单。
@@ -44,10 +44,10 @@ WebUI automation testing framework based on Selenium
         BrowserEmulator driver;
         String baseUrl;
 
-        String searchBox = "xpath=>//*[@id='kw']";
-        String searchBtn = "xpath=>//*[@id='su']";
+        String searchBox = "id=>kw";
+        String searchBtn = "id=>su";
 
-        @BeforeClass
+        @BeforeMethod
         public void setUp() {
             baseUrl = "https://www.baidu.com";
             driver = new BrowserEmulator();
@@ -68,8 +68,8 @@ WebUI automation testing framework based on Selenium
             assertEquals(driver.getTitle(), searchKey+"_百度搜索");
         }
 
-        @AfterClass
-        public void tearDown() throws Exception {
+        @AfterMethod
+        public void tearDown(){
             driver.quit();
         }
     }

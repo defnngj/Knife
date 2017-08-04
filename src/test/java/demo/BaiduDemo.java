@@ -1,24 +1,24 @@
 package demo;
 
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+
 import static org.testng.Assert.assertEquals;
 
 import knife.BrowserEmulator;
+
 /**
  * The demo to show Knife and TestNG basic usage
  * @author bugmaster
  */
 public class BaiduDemo {
+
     BrowserEmulator driver;
     String baseUrl;
 
-    String searchBox = "xpath=>//*[@id='kw']";
-    String searchBtn = "xpath=>//*[@id='su']";
+    String searchBox = "id=>kw";
+    String searchBtn = "id=>su";
 
-    @BeforeClass
+    @BeforeMethod
     public void setUp() {
         baseUrl = "https://www.baidu.com";
         driver = new BrowserEmulator();
@@ -39,8 +39,8 @@ public class BaiduDemo {
         assertEquals(driver.getTitle(), searchKey+"_百度搜索");
     }
 
-    @AfterClass
-    public void tearDown() throws Exception {
+    @AfterMethod
+    public void tearDown() {
         driver.quit();
     }
 }
