@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.util.Set;
 import java.io.File;
 import java.awt.Toolkit;
+import org.apache.commons.io.FileUtils;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.Dimension;
@@ -439,17 +440,16 @@ public class BrowserEmulator {
 
     /**
      * TakesScreenshot.
-     *
+     */
     public void TakesScreenshot(String file_path) throws Exception {
-
-        BufferedImage image = new Robot().createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
-
+        File srcFile = ((TakesScreenshot)browser).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(srcFile,new File(file_path));
         try {
-            ImageIO.write(image, "png", new File(file_path));
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+
+        }catch (Exception e) {
+             e.printStackTrace();
         }
-    }*/
+    }
 
 
 }
