@@ -80,3 +80,7 @@ public class BaiduDemo {
 
 切换不同的浏览器或模式：
 * 打开项目根目录下的 prop.properties 文件，修改 BrowserType 参数值。
+
+
+__浏览器驱动下载与配置：__
+http://www.testclass.net/selenium_java/selenium3-browser-driver/
