@@ -1,10 +1,10 @@
 package demo;
 
+import core.knifeException;
 import org.testng.annotations.*;
-
 import static org.testng.Assert.assertEquals;
 
-import knife.BrowserEmulator;
+import core.BrowserEmulator;
 
 /**
  * The demo to show Knife and TestNG basic usage
@@ -19,10 +19,11 @@ public class BaiduDemo {
     String searchBtn = "id=>su";
 
     @BeforeMethod
-    public void setUp() {
+    public void setUp() throws knifeException {
         baseUrl = "https://www.baidu.com";
         driver = new BrowserEmulator();
     }
+
     // 定义对象数组
     @DataProvider(name = "search")
     public Object[][] Keys() {

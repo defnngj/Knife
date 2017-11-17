@@ -14,24 +14,30 @@
  *  limitations under the License.
  *
  */
-package knife;
+package core;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Set;
 import java.io.File;
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.*;
+import java.awt.Toolkit;
 
+import org.openqa.selenium.*;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Rectangle;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+
+import javax.imageio.ImageIO;
 
 /**
  * knife.BrowserEmulator is based on Selenium3 and adds some enhancements
@@ -41,12 +47,10 @@ import org.testng.Assert;
 public class BrowserEmulator {
 
     static WebDriver browser;
-    ChromeDriverService chromeServer;
-    JavascriptExecutor javaScriptExecutor;
 
     int timeout = Integer.parseInt(GlobalSettings.timeout);
 
-    public BrowserEmulator() {
+    public BrowserEmulator() throws knifeException{
 
         int browserType = GlobalSettings.browserType;
 
@@ -61,9 +65,12 @@ public class BrowserEmulator {
         } else if (browserType == 5) {
             browser = new OperaDriver();
         } else if (browserType == 6) {
-            browser = new PhantomJSDriver();
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.addArguments("--headless");
+            browser = new ChromeDriver(chromeOptions);
         } else {
-            Assert.fail("Not found browser, See the 'prop.properties' file, configure the browser type.");
+
+            throw new knifeException("Positioning syntax errors, lack of '=>'.");
         }
 
     }
@@ -74,10 +81,10 @@ public class BrowserEmulator {
      * @param xpath
      *            the element's
      */
-    public WebElement getElement(String xpath) {
+    public WebElement getElement(String xpath) throws knifeException{
 
         if (xpath.contains("=>") == false) {
-            Assert.fail("Positioning syntax errors, lack of '=>'.");
+            throw new knifeException("Positioning syntax errors, lack of '=>'.");
         }
 
         String by = xpath.split("=>")[0];
@@ -102,9 +109,8 @@ public class BrowserEmulator {
             WebElement element = browser.findElement(By.cssSelector(value));
             return element;
         } else {
-            Assert.fail("Please enter the correct targeting elements,'id','name','class','xpaht','css'.");
+            throw new knifeException("Please enter the correct targeting elements,'id','name','class','xpaht','css'.");
         }
-        return null;
 
     }
 
@@ -114,10 +120,10 @@ public class BrowserEmulator {
      * @param xpath
      *            the element's xpath the second
      */
-    public void waitElement(String xpath, int second) {
+    public void waitElement(String xpath, int second) throws knifeException{
 
         if (xpath.contains("=>") == false) {
-            Assert.fail("Positioning syntax errors, lack of '=>'.");
+            throw new knifeException("Positioning syntax errors, lack of '=>'.");
         }
 
         String by = xpath.split("=>")[0];
@@ -137,8 +143,7 @@ public class BrowserEmulator {
         } else if (by.equals("css")) {
             findelement = By.cssSelector(value);
         } else {
-            Assert.fail("Please enter the correct targeting elements,'id','name','class','xpaht','css'.");
-
+            throw new knifeException("Please enter the correct targeting elements,'id','name','class','xpaht','css'.");
         }
         new WebDriverWait(browser, second).until(ExpectedConditions
                 .presenceOfElementLocated(findelement));
@@ -200,7 +205,7 @@ public class BrowserEmulator {
      * @param xpath
      *            the element's xpath
      */
-    public void click(String xpath) {
+    public void click(String xpath) throws knifeException{
 
         waitElement(xpath, timeout);
         WebElement element = getElement(xpath);
@@ -220,7 +225,7 @@ public class BrowserEmulator {
      * @param text
      *            , the input text
      */
-    public void type(String xpath, String text) {
+    public void type(String xpath, String text) throws knifeException{
 
         waitElement(xpath, timeout);
         WebElement element = getElement(xpath);
@@ -244,7 +249,7 @@ public class BrowserEmulator {
      * @param xpath
      *            the element's xpath
      */
-    public void rightClick(String xpath) {
+    public void rightClick(String xpath) throws knifeException{
         waitElement(xpath, timeout);
 
         Actions action = new Actions(browser);
@@ -259,7 +264,7 @@ public class BrowserEmulator {
      * @param xpath
      *            the element's xpath
      */
-    public void clickAndHold(String xpath) {
+    public void clickAndHold(String xpath) throws knifeException{
         waitElement(xpath, timeout);
 
         Actions action = new Actions(browser);
@@ -276,7 +281,7 @@ public class BrowserEmulator {
      * @param ta_xpath
      *            , the element's xpath
      */
-    public void dragAndDrop(String el_xpath, String ta_xpath) {
+    public void dragAndDrop(String el_xpath, String ta_xpath) throws knifeException{
         waitElement(el_xpath, timeout);
         waitElement(ta_xpath, timeout);
 
@@ -309,7 +314,7 @@ public class BrowserEmulator {
      * @param xpath
      * @param value
      */
-    public void selectValue(String xpath, String value) {
+    public void selectValue(String xpath, String value) throws knifeException{
 
         waitElement(xpath, timeout);
 
@@ -338,7 +343,7 @@ public class BrowserEmulator {
      * @param xpath
      *            , the iframe's xpath
      */
-    public void enterFrame(String xpath) {
+    public void enterFrame(String xpath) throws knifeException{
         waitElement(xpath, timeout);
         WebElement element = getElement(xpath);
         browser.switchTo().frame(element);
@@ -357,7 +362,7 @@ public class BrowserEmulator {
      * @param xpath
      *            , the open windows element xpath
      */
-    public void openOneWindow(String xpath) {
+    public void openOneWindow(String xpath) throws knifeException{
 
         waitElement(xpath, timeout);
 
@@ -384,7 +389,7 @@ public class BrowserEmulator {
      * @param xpath
      * @return
      */
-    public String getText(String xpath) {
+    public String getText(String xpath) throws knifeException{
         WebElement element = getElement(xpath);
         return element.getText();
     }
@@ -412,7 +417,7 @@ public class BrowserEmulator {
      *
      * @return
      */
-    public String getAttribute(String xpath, String attribute) {
+    public String getAttribute(String xpath, String attribute) throws knifeException{
         WebElement element = getElement(xpath);
         String value = element.getAttribute(attribute);
         return value;
@@ -434,14 +439,17 @@ public class BrowserEmulator {
 
     /**
      * TakesScreenshot.
-     */
-    public void TakesScreenshot(String file_path) {
+     *
+    public void TakesScreenshot(String file_path) throws Exception {
+
+        BufferedImage image = new Robot().createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
+
         try {
-            File srcFile = ((TakesScreenshot)browser).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(srcFile,new File(file_path));
-        } catch (Exception e) {
-            e.printStackTrace();
+            ImageIO.write(image, "png", new File(file_path));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
-    }
+    }*/
+
 
 }

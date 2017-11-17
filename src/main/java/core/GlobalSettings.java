@@ -14,7 +14,7 @@
  *  limitations under the License.
  *
  */
-package knife;
+package core;
 import java.io.FileInputStream;
 import java.util.Properties;
 
